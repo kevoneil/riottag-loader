@@ -23,5 +23,8 @@
   "bugs": {
     "url": "https://github.com/tokyoincode/riottag-loader/issues"
   },
-  "homepage": "https://github.com/tokyoincode/riottag-loader#readme"
+  "homepage": "https://github.com/tokyoincode/riottag-loader#readme",
+  "dependencies": {
+    "riot-compiler": "^3.0.0"
+  }
 }
