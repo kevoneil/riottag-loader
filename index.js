@@ -11,6 +11,7 @@ module.exports = function(source) {
   try {
     return compiler.compile(source, opts, this.resourcePath);
   } catch (error) {
+    if (!error) return;
     this.emitError()
   }
 

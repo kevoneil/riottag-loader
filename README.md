@@ -14,7 +14,6 @@ You can install this loader via NPM or Yarn
 
 ```
 npm install riottag-loader
-
 ```
 
 ## Usage
