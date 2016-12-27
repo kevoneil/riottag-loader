@@ -1,0 +1,2 @@
+
+import './another-ext.html'
