@@ -3,8 +3,7 @@ const assert = require('assert')
 const fsp = require('fs-promise')
 const wrap = require('co').wrap;
 const path = require('path')
-const webpack = require('webpack')
-const raw = require('raw-loader');
+const webpack = require('../dist/index')
 
 describe('riottag-loader', function() {
 
@@ -22,8 +21,8 @@ describe('riottag-loader', function() {
   }
 
   function tagFiles(name, opts) {
-    return fsp.readFile(path.join(compiledDir, name), 'utf-8')
-      .then(res => normalize(res))
+    return fsp.readFile(path.join(tagDir, name), 'utf-8')
+      .then(res => webpack(res))
   }
 
   it('returns the file', wrap(function* () {

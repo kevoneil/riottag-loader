@@ -32,7 +32,8 @@
     "raw-loader": "^0.5.1",
     "webpack": "^1.14.0"
   },
-  "scipts": {
+  "scripts": {
+    "pretest": "node_modules/webpack/bin/webpack.js --c",
     "test": "mocha test/*.js"
   }
 }
