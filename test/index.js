@@ -7,22 +7,23 @@ const webpack = require('../index.js')
 
 describe('riottag-loader', function() {
 
-  const compiledDir =  path.join(__dirname, 'compiled')
+  const expectedDir =  path.join(__dirname, 'compiled')
   const tagDir =  path.join(__dirname, 'tag')
 
   function normalize(str) {
-    return str.trim().replace(/[\n\r]+/g, '')
+    const string = str.trim()
+    console.log(str);
+    // return str.trim().replace(/[/\\n\r]+/g, '')
+  }
+
+  function getFile(name) {
+    return fsp.readFile(path.join(expectedDir, name), 'utf8')
+      .then(res => normalize(res))
   }
 
   function tagFiles(name) {
     return fsp.readFile(path.join(tagDir, name), 'utf-8')
-      .then(res => webpack(res))
-      .then(res => normalize(res))
-  }
-
-  function getFile(name) {
-    return fsp.readFile(path.join(compiledDir, name), 'utf8')
-      .then(res => normalize(res))
+      .then(res => webpack(normalize(res)))
   }
 
   it('returns the file', wrap(function* () {
