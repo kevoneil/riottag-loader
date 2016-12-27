@@ -15,6 +15,7 @@ describe('riottag-loader', function() {
     return str.trim().replace(/[\n\r]+/g, '')
   }
 
+  //NOTE: figure out why it won't trim
   function compiledFiles(name) {
     return fsp.readFile(path.join(compiledDir, name), 'utf8')
       .then(res => normalize(res))
