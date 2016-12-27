@@ -6,13 +6,15 @@ module.exports = function(source) {
 
   if(this.cacheable) this.cacheable();
 
-  var opts = loaderUtils.getLoaderConfig(this, 'riottag-loader');
+  if(Object.prototype.hasOwnProperty.call(this, 'riottag-loader')) {
+    var opts = loaderUtils.getLoaderConfig(this, 'riottag-loader');
+  }
 
   try {
     return compiler.compile(source, opts, this.resourcePath);
   } catch (error) {
     if (!error) return;
-    this.emitError()
+    if (this) this.emitError()
   }
 
 }
