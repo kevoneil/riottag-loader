@@ -35,6 +35,6 @@
   },
   "scripts": {
     "pretest": "node_modules/webpack/bin/webpack.js --c",
-    "test": "mocha test/*.js"
+    "test": "node_modules/mocha-webpack/bin/mocha-webpack --webpack-config webpack.config.js test/index.js"
   }
 }

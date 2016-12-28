@@ -3,7 +3,7 @@ const assert = require('assert')
 const fsp = require('fs-promise')
 const wrap = require('co').wrap;
 const path = require('path')
-const webpack = require('../dist/index')
+const riot = require('./../dist/index')
 
 describe('riottag-loader', function() {
 
@@ -22,11 +22,11 @@ describe('riottag-loader', function() {
 
   function tagFiles(name, opts) {
     return fsp.readFile(path.join(tagDir, name), 'utf-8')
-      .then(res => webpack(res))
+      .then(res => riot(res))
   }
 
   it('returns the file', wrap(function* () {
     const filename = 'another-ext.js'
-    // assert.equal(yield compiledFiles(filename), yield tagFiles(filename))
+    assert.equal(yield compiledFiles(filename), yield tagFiles(filename))
   }));
 });
