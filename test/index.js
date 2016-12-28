@@ -3,14 +3,12 @@ const wrap = require('co').wrap;
 const assert = require('assert')
 const fsp = require('fs-promise')
 const loaderFile = require('./../index')
-const assign = require('object-assign')
+const assign = require('assign')
 
 const webpackContext = {
   cacheable: false,
   exec: {},
 }
-
-const loader = loaderFile.bind(webpackContext)
 
 describe('riottag-loader', function() {
 
@@ -26,16 +24,19 @@ describe('riottag-loader', function() {
       .then(res => minify(res))
   }
 
-  function fixtureFiles(name, opts) {
+  function fixtureFiles(name, opts = {}) {
+    const webpack = Object.assign({ query: opts }, webpackContext)
+    const loader = loaderFile.bind(webpack)
     return fsp.readFile(path.join(fixturesDir, name), 'utf8')
       .then(s => {
-        return loader.call(assign({}, webpackContext), s, opts)
+        return loader.call(assign({}, webpack), s)
       })
       .then(s => minify(s))
   }
 
   it('compiles single tag', wrap(function* () {
     const filename = 'first'
+
     assert.equal(
       yield expectFiles(`${filename}.js`),
       yield fixtureFiles(`${filename}.tag`)
@@ -60,7 +61,7 @@ describe('riottag-loader', function() {
 
   it('skips css', wrap(function* () {
     const filename = 'multiple'
-    const opts = { skip: ['css'] }
+    const opts = {skip: ['css']}
     assert.equal(
       yield expectFiles(`${filename}.js`),
       yield fixtureFiles(`${filename}.tag`, opts)

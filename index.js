@@ -10,8 +10,7 @@ module.exports = function (source) {
 
   try {
     return compiler.compile(source, opts, this.resourcePath);
-  } catch (err) {
-    if (!err) return;
-    this.emitError()
+  } catch(err) {
+    this.emitError(err)
   }
 }
