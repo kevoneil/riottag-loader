@@ -34,9 +34,16 @@ describe('riottag-loader', function() {
       .then(s => normalize(s))
   }
 
-  it('returns the file', wrap(function* () {
+  it('compiles simple tag', wrap(function* () {
+    const filename = 'first'
+    assert.equal(
+      yield expectFiles(`${filename}.js`),
+      yield fixtureFiles(`${filename}.tag`)
+    )
+  }));
+
+  it('compiles html files', wrap(function* () {
     const filename = 'another-ext'
-    const test = yield fixtureFiles(`${filename}.html`)
     assert.equal(
       yield expectFiles(`${filename}.js`),
       yield fixtureFiles(`${filename}.html`)
