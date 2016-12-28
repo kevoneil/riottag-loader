@@ -1,6 +1,7 @@
 
 const path = require('path')
 const webpack = require('webpack')
+const nodeExternals = require('webpack-node-externals');
 
 module.exports = {
   target: "node",
@@ -9,5 +10,5 @@ module.exports = {
     path: path.join(__dirname, '/dist'),
     filename: 'index.js'
   },
-  externals: ['riot-compiler', 'loser-utils']
+  externals: [nodeExternals()]
 }
