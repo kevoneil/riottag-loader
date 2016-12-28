@@ -1,1 +1,1 @@
-import './another-ext.html'
+require('./another-ext.html')

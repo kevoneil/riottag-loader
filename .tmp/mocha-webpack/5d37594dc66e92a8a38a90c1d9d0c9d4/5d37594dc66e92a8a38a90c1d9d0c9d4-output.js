@@ -45,36 +45,25 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	
-	var compiler = __webpack_require__(1);
-	var loaderUtils = __webpack_require__(2);
+	    var testsContext = __webpack_require__(1);
 
-	module.exports = function(source) {
+	    var runnable = testsContext.keys();
 
-	  if(this.cacheable) this.cacheable();
-
-	  var opts = loaderUtils.getLoaderConfig(this, 'riottag-loader');
-
-	  try {
-	    return compiler.compile(source, opts, this.resourcePath);
-	  } catch (error) {
-	    if (!error) return;
-	    this.emitError()
-	  }
-
-	}
-
+	    runnable.forEach(testsContext);
+	    
 
 /***/ },
 /* 1 */
 /***/ function(module, exports) {
 
-	module.exports = require("riot-compiler");
+	function webpackContext(req) {
+		throw new Error("Cannot find module '" + req + "'.");
+	}
+	webpackContext.keys = function() { return []; };
+	webpackContext.resolve = webpackContext;
+	module.exports = webpackContext;
+	webpackContext.id = 1;
 
-/***/ },
-/* 2 */
-/***/ function(module, exports) {
-
-	module.exports = require("loader-utils");
 
 /***/ }
 /******/ ]);

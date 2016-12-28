@@ -1,9 +1,9 @@
 
+const path = require('path')
+const wrap = require('co').wrap;
 const assert = require('assert')
 const fsp = require('fs-promise')
-const wrap = require('co').wrap;
-const path = require('path')
-const riot = require('./../dist/index')
+const riot = require('./../index')
 
 describe('riottag-loader', function() {
 
@@ -11,22 +11,26 @@ describe('riottag-loader', function() {
   const tagDir =  path.join(__dirname, 'tag')
 
   function normalize(str) {
-    return str.trim().replace(/[\n\r]+/g, '')
+    const string = str.trim().replace(/[\n]+/g, '')
+    return string.replace(/\\/g, '')
   }
 
-  //NOTE: figure out why it won't trim
   function compiledFiles(name) {
     return fsp.readFile(path.join(compiledDir, name), 'utf8')
       .then(res => normalize(res))
   }
 
   function tagFiles(name, opts) {
-    return fsp.readFile(path.join(tagDir, name), 'utf-8')
+    return fsp.readFile(path.join(tagDir, name), 'utf8')
       .then(res => riot(res))
+      .then(res => normalize(res))
   }
 
   it('returns the file', wrap(function* () {
-    const filename = 'another-ext.js'
-    assert.equal(yield compiledFiles(filename), yield tagFiles(filename))
+    const filename = 'another-ext'
+    assert.equal(
+      yield compiledFiles(`${filename}.js`),
+      yield tagFiles(`${filename}.html`)
+    )
   }));
 });

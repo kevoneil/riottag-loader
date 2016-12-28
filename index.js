@@ -2,11 +2,13 @@
 var compiler = require('riot-compiler');
 var loaderUtils = require('loader-utils');
 
-module.exports = function(source) {
+module.exports = function riot(source) {
 
   if(this.cacheable) this.cacheable();
 
-  var opts = loaderUtils.getLoaderConfig(this, 'riottag-loader');
+  if (loaderUtils.parseQuery().length > 0) {
+    var opts = loaderUtils.getLoaderConfig(this, 'riottag-loader');
+  }
 
   try {
     return compiler.compile(source, opts, this.resourcePath);
@@ -14,5 +16,4 @@ module.exports = function(source) {
     if (!error) return;
     this.emitError()
   }
-
 }
