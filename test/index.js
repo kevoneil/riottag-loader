@@ -17,13 +17,13 @@ describe('riottag-loader', function() {
   const expectDir =  path.join(__dirname, 'compiled')
   const fixturesDir =  path.join(__dirname, 'tag')
 
-  function normalize(str) {
-    return str.trim().replace(/[\n\r]+/g, '')
+  function minify(str) {
+    return str.trim().replace(/\s+/g, '')
   }
 
   function expectFiles(name) {
     return fsp.readFile(path.join(expectDir, name), 'utf8')
-      .then(res => normalize(res))
+      .then(res => minify(res))
   }
 
   function fixtureFiles(name, opts) {
@@ -31,7 +31,7 @@ describe('riottag-loader', function() {
       .then(s => {
         return loader.call(assign({}, webpackContext), s)
       })
-      .then(s => normalize(s))
+      .then(s => minify(s))
   }
 
   it('compiles simple tag', wrap(function* () {
@@ -47,6 +47,14 @@ describe('riottag-loader', function() {
     assert.equal(
       yield expectFiles(`${filename}.js`),
       yield fixtureFiles(`${filename}.html`)
+    )
+  }));
+
+  it('compiles multiple tags', wrap(function* () {
+    const filename = 'multiple'
+    assert.equal(
+      yield expectFiles(`${filename}.js`),
+      yield fixtureFiles(`${filename}.tag`)
     )
   }));
 });
