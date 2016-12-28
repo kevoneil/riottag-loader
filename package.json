@@ -23,12 +23,13 @@
   "homepage": "https://github.com/tokyoincode/riottag-loader#readme",
   "dependencies": {
     "loader-utils": "^0.2.16",
-    "riot-compiler": "^3.0.0"
+    "riot-compiler": "^3.1.1"
   },
   "devDependencies": {
     "co": "^4.6.0",
     "fs-promise": "^1.0.0",
-    "mocha": "^3.2.0"
+    "mocha": "^3.2.0",
+    "object-assign": "^4.1.0"
   },
   "scripts": {
     "test": "node_modules/mocha/bin/mocha ./test/index.js"
