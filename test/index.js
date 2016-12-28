@@ -29,12 +29,12 @@ describe('riottag-loader', function() {
   function fixtureFiles(name, opts) {
     return fsp.readFile(path.join(fixturesDir, name), 'utf8')
       .then(s => {
-        return loader.call(assign({}, webpackContext), s)
+        return loader.call(assign({}, webpackContext), s, opts)
       })
       .then(s => minify(s))
   }
 
-  it('compiles simple tag', wrap(function* () {
+  it('compiles single tag', wrap(function* () {
     const filename = 'first'
     assert.equal(
       yield expectFiles(`${filename}.js`),
@@ -55,6 +55,15 @@ describe('riottag-loader', function() {
     assert.equal(
       yield expectFiles(`${filename}.js`),
       yield fixtureFiles(`${filename}.tag`)
+    )
+  }));
+
+  it('skips css', wrap(function* () {
+    const filename = 'multiple'
+    const opts = { skip: ['css'] }
+    assert.equal(
+      yield expectFiles(`${filename}.js`),
+      yield fixtureFiles(`${filename}.tag`, opts)
     )
   }));
 });
