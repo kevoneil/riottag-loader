@@ -34,7 +34,6 @@ describe('riottag-loader', function() {
 
   it('compiles single tag', wrap(function* () {
     const filename = 'first'
-
     assert.equal(
       yield expectFiles(`${filename}.js`),
       yield fixtureFiles(`${filename}.tag`)
@@ -63,6 +62,14 @@ describe('riottag-loader', function() {
     assert.equal(
       yield expectFiles(`${filename}.js`),
       yield fixtureFiles(`${filename}.tag`, opts)
+    );
+  }));
+
+  it('works with es6 in tag', wrap(function* () {
+    const filename = 'es6-in-tag';
+    assert.equal(
+      yield expectFiles(`${filename}.js`),
+      yield fixtureFiles(`${filename}.tag`)
     );
   }));
 });
