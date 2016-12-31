@@ -58,7 +58,7 @@ describe('riottag-loader', function() {
 
   it('skips css', wrap(function* () {
     const filename = 'multiple';
-    const opts = {skip: ['css']}
+    const opts = { exclude: ['css'] }
     assert.equal(
       yield expectFiles(`${filename}.js`),
       yield fixtureFiles(`${filename}.tag`, opts)

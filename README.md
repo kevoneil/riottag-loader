@@ -47,7 +47,7 @@ module: {
       exclude: /node_modules/,
       loader: 'riottag-loader',
       query: {
-        skip: ['css']
+        exclude: ['css']
       }
     },
   ],
