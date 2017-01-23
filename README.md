@@ -20,6 +20,10 @@ You can install this loader via NPM or Yarn
 ```
 npm install riottag-loader
 ```
+or
+```
+yarn add riottag-loader
+```
 
 ## Usage
 
@@ -32,6 +36,24 @@ module: {
       test: /\.tag$/,
       exclude: /node_modules/,
       loader: 'riottag-loader',
+    },
+  ],
+}
+```
+## Query
+
+You can optionally send in queries/options:
+
+```
+module: {
+  loaders: [
+    {
+      test: /\.tag$/,
+      exclude: /node_modules/,
+      loader: 'riottag-loader',
+      query: {
+        exclude: ['css']
+      }
     },
   ],
 }
