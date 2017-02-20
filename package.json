@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/tokyoincode/riottag-loader#readme",
   "dependencies": {
-    "loader-utils": "^0.2.16",
+    "loader-utils": "^1.0.0",
     "riot-compiler": "^3.1.1"
   },
   "devDependencies": {
