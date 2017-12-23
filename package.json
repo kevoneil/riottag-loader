@@ -23,7 +23,7 @@
   "homepage": "https://github.com/tokyoincode/riottag-loader#readme",
   "dependencies": {
     "loader-utils": "^0.2.16",
-    "riot-compiler": "^3.1.1"
+    "riot-compiler": "^3.3.1"
   },
   "devDependencies": {
     "assign": "^0.1.7",
