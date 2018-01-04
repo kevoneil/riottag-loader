@@ -22,15 +22,15 @@
   },
   "homepage": "https://github.com/tokyoincode/riottag-loader#readme",
   "dependencies": {
-    "loader-utils": "^0.2.16",
+    "loader-utils": "^1.0.0",
     "riot-compiler": "^3.1.1"
   },
   "devDependencies": {
     "assign": "^0.1.7",
     "clone": "^2.1.0",
     "co": "^4.6.0",
-    "fs-promise": "^2.0.0",
-    "mocha": "^3.2.0",
+    "fs-promise": "^1.0.0",
+    "mocha": "^4.0.0",
     "object-assign": "^4.1.0"
   },
   "scripts": {

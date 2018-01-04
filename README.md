@@ -1,9 +1,3 @@
-
-# This package has been deprecated.
-Please check out the official Webpack Riot plugin [here](https://github.com/riot/tag-loader)
-
-Thank you!
-
 # riottag-loader
 A webpack loader for Riot.js that gathers and compiles tags.
 
